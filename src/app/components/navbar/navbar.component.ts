@@ -11,7 +11,13 @@ export class NavbarComponent {
   //The current url
   href:string = "";
 
-  links:any[] = [];
+  /**
+   * All the links accessible by the navbar
+   * link: the link to the page
+   * visual: the innerHTML of the link
+   * display: Should the link be displayed to current user
+   */
+  links:{link:string, visual:string, display:boolean}[] = [];
 
   constructor(private router: Router, private authService: AuthService) {
   }
