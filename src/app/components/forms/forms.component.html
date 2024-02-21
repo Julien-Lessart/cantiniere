@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmitForm()">
+  <div *ngFor="let field of fields">
+    <label for="field.id">{{ field.label }}</label>
+    <input [formControlName]="field.id" />
+  </div>
+  <button type="submit">Valider</button>
+</form>

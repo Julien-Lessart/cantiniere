@@ -7,6 +7,8 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FormsComponent } from './components/forms/forms.component';
+
 import { FilterComponentComponent } from './components/filter-component/filter-component.component';
 
 import {
@@ -33,6 +35,7 @@ export function tokenGetter() {
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    FormsComponent,
   ],
   imports: [
     BrowserModule,

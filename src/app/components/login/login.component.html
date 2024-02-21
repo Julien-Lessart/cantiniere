@@ -1,5 +1,6 @@
 <h2>Se connecter</h2>
-<form [formGroup]="loginUserData" (ngSubmit)="onLogin()">
+<app-forms [fields]="fieldsUser" (newItemEvent)="onLogin($event)"></app-forms>
+<!-- <form [formGroup]="loginUserData" (ngSubmit)="onLogin()">
   <div>
     <label for="email">email</label>
     <input type="text" name="email" formControlName="email" />
@@ -9,8 +10,10 @@
     <input type="text" name="password" formControlName="password" />
   </div>
   <button type="submit">Validation</button>
-</form>
-<button routerLink="/register">Crée un compte</button>
-<div>
-  <p>Mot de passe oublié</p>
+</form> -->
+<div class="content">
+  <button routerLink="/register">Crée un compte</button>
+  <div>
+    <a routerLink="/forget">Mot de passe oublié</a>
+  </div>
 </div>
