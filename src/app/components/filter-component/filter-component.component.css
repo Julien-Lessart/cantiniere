@@ -1,0 +1,27 @@
+#Filter {
+  display: flex;
+  max-width: 90%;
+  padding: 0 60px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  min-width: 125px;
+  color: #1d6154;
+  cursor: pointer;
+  width: fit-content;
+  padding: 9px 39px;
+  border: 1px solid #1d6154;
+  border-radius: 60px;
+  font-family: "Syne", sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+.selected {
+  color: white;
+  background: #1d6154;
+}
+.hidden {
+  display: none;
+}

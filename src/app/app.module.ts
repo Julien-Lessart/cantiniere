@@ -9,17 +9,17 @@ import { AppComponent } from './app.component';
 
 import { FilterComponentComponent } from './components/filter-component/filter-component.component';
 
-import { LoginComponent } from './Components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import {
   HttpClientModule,
   provideHttpClient,
   withFetch,
 } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './Components/register/register.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/register/register.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }

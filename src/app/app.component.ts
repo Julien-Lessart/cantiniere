@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { FilterComponentComponent } from './components/filter-component/filter-component.component';}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
-  
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'cantiniere';

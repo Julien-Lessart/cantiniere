@@ -1,22 +1,25 @@
 <div
   ngDefaultControl
-  [(ngModel)]="filteredLocation"
+  [(ngModel)]="filteredOption"
   name="locationFilter"
-  id="locationFilter"
+  id="Filter"
 >
-  <button (click)="filteredLocation = Lundi">Lundi</button>
-  <button (click)="filteredLocation = Mardi">Mardi</button>
-  <button (click)="filteredLocation = Mercredi">Mercredi</button>
-  <button (click)="filteredLocation = Jeudi">Jeudi</button>
-  <button (click)="filteredLocation = Vendredi">Vendredi</button>
+  <div *ngFor="let option of filteredOptions; index as i; first as isFirst">
+    <div
+      [ngClass]="isFirst ? 'selected filterButton' : 'filterButton'"
+      style="cursor: pointer; margin: 20px 0"
+      (click)="setValue(option)"
+    >
+      {{ option }}
+    </div>
+  </div>
 </div>
-
-<div [className]="filteredLocation == Lundi ? 'display' : 'hidden">Lundi</div>
-<div [className]="filteredLocation == Mardi ? 'display' : 'hidden">Mardi</div>
-<div [className]="filteredLocation == Mercredi ? 'display' : 'hidden">
+<div [ngClass]="filteredOption === 'lundi' ? 'display' : 'hidden'">Lundi</div>
+<div [ngClass]="filteredOption === 'mardi' ? 'display' : 'hidden'">Mardi</div>
+<div [ngClass]="filteredOption === 'mercredi' ? 'display' : 'hidden'">
   Mercredi
 </div>
-<div [className]="filteredLocation == Jeudi ? 'display' : 'hidden">Jeudi</div>
-<div [className]="filteredLocation == Vendredi ? 'display' : 'hidden">
-  Jeudi
+<div [ngClass]="filteredOption === 'jeudi' ? 'display' : 'hidden'">Jeudi</div>
+<div [ngClass]="filteredOption === 'vendredi' ? 'display' : 'hidden'">
+  Vendredi
 </div>
