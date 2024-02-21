@@ -1,0 +1,16 @@
+<h2>Se connecter</h2>
+<form [formGroup]="loginUserData" (ngSubmit)="onLogin()">
+  <div>
+    <label for="email">email</label>
+    <input type="text" name="email" formControlName="email" />
+  </div>
+  <div>
+    <label for="password">password</label>
+    <input type="text" name="password" formControlName="password" />
+  </div>
+  <button type="submit">Validation</button>
+</form>
+<button routerLink="/register">Crée un compte</button>
+<div>
+  <p>Mot de passe oublié</p>
+</div>
