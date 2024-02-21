@@ -1,0 +1,22 @@
+<div
+  ngDefaultControl
+  [(ngModel)]="filteredLocation"
+  name="locationFilter"
+  id="locationFilter"
+>
+  <button (click)="filteredLocation = Lundi">Lundi</button>
+  <button (click)="filteredLocation = Mardi">Mardi</button>
+  <button (click)="filteredLocation = Mercredi">Mercredi</button>
+  <button (click)="filteredLocation = Jeudi">Jeudi</button>
+  <button (click)="filteredLocation = Vendredi">Vendredi</button>
+</div>
+
+<div [className]="filteredLocation == Lundi ? 'display' : 'hidden">Lundi</div>
+<div [className]="filteredLocation == Mardi ? 'display' : 'hidden">Mardi</div>
+<div [className]="filteredLocation == Mercredi ? 'display' : 'hidden">
+  Mercredi
+</div>
+<div [className]="filteredLocation == Jeudi ? 'display' : 'hidden">Jeudi</div>
+<div [className]="filteredLocation == Vendredi ? 'display' : 'hidden">
+  Jeudi
+</div>
