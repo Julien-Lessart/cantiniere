@@ -1,16 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-
 nav {
-    margin: 40px 80px;
+  margin: 40px 80px;
 }
 
 nav div {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-direction: row;
-    
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
 }
 
 .logo {
@@ -24,9 +20,9 @@ nav div {
 }
 
 .logo span:first-child {
-    font-family: 'Syne';
-    font-weight: 800;
-    font-size: 22px;
+  font-family: "Syne";
+  font-weight: 800;
+  font-size: 22px;
 }
 
 ul {
@@ -34,11 +30,11 @@ ul {
 }
 
 .links {
-    font-family: 'Work Sans';
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 35px;
-    font-size: 16px;
+  font-family: "Work Sans";
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 35px;
+  font-size: 16px;
 }
 
 .links li {
@@ -49,5 +45,5 @@ ul {
 }
 
 .current {
-    border-bottom: 2px solid #1D6154;
+  border-bottom: 2px solid #1d6154;
 }

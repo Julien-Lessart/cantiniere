@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  background-color: #fffef8;
+}
+
+button {
+  background-color: #1d6154;
+  width: 15em;
+  height: 3em;
+  color: #ffffff;
+  font-family: "Syne";
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.6em 2em;
+  border-radius: 3em;
+  border: 0;
+  cursor: pointer;
+  margin: 1em;
+}
+h2 {
+  font-family: "Syne";
+  font-weight: bold;
+  color: #1d6154;
+  text-align: center;
+  font-size: 2em;
+}
+a {
+  font-family: "Work sans";
+  text-align: center;
+  color: #3d3d3d;
+  font-size: 0.8em;
+  text-decoration: underline;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

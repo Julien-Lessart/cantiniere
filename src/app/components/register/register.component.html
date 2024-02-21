@@ -1,0 +1,8 @@
+<h2>S'inscrire</h2>
+<app-forms
+  [fields]="fieldsUser"
+  (newItemEvent)="onRegister($event)"
+></app-forms>
+<div class="content">
+  <button routerLink="/login">Annuler</button>
+</div>
