@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+nav {
+    margin: 40px 80px;
+}
+
+nav div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+    
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Work Sans';
+    font-size: 10px;
+    color: #B1663C;
+}
+
+.logo span:first-child {
+    font-family: 'Syne';
+    font-weight: 800;
+    font-size: 22px;
+}
+
+.links {
+    font-family: 'Work Sans';
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 35px;
+    font-size: 16px;
+}
+
+.links a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: auto 0;
+}
+
+.current {
+    border-bottom: 2px solid #1D6154;
+}
