@@ -8,6 +8,11 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './Components/register/register.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { JwtModule } from "@auth0/angular-jwt";
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +24,13 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     AppRoutingModule,
     HttpClientModule,
     FormsModule, 
-    ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive
+    ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive,JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["example.com"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    }),
   ],
   providers: [
     provideClientHydration(), provideHttpClient(withFetch())

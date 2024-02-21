@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { JwtHelperService  } from '@auth0/angular-jwt';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,7 +44,9 @@ onLogin(){
         const configSession:[{}] = [{}];
         const user = [];
         user.push(this.loginObj);
-        configSession.push({idToken: res.headers.get('Authorization'), user:JSON.stringify(user)});
+        const helper = new JwtHelperService();
+        const decodedToken = helper.decodeToken(res.headers.get('Authorization') || "");
+        configSession.push({idToken: res.headers.get('Authorization'), user:decodedToken});
         this._auth.setSession(configSession);
       /* this._auth.setUser(this.loginObj.email); */
       /* this.router.navigate(['/home']); */
@@ -52,7 +54,7 @@ onLogin(){
       err => console.log(err)
       );
     }
-}
+  }
 }
 
 export class SignInModel {
