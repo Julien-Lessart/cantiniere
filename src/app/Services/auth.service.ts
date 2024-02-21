@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment, { Moment } from 'moment';
-import { SignInModel, SignUpModel } from '../Components/login/login.component';
+import { SignInModel, SignUpModel } from '../components/login/login.component';
 @Injectable({
   providedIn: 'root',
 })

@@ -7,9 +7,9 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsComponent } from './Components/forms/forms.component';
+import { FormsComponent } from './components/forms/forms.component';
 
-import { FilterComponentComponent } from './Components/filter-component/filter-component.component';
+import { FilterComponentComponent } from './components/filter-component/filter-component.component';
 
 import {
   HttpClientModule,
@@ -19,10 +19,10 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { LoginComponent } from './Components/login/login.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { RegisterComponent } from './Components/register/register.component';
-import { NavbarLinkComponent } from './Components/navbar-link/navbar-link.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
