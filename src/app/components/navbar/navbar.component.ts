@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,18 +8,33 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  //The current relative url
+  //The current url
   href:string = "";
 
-  constructor(private router: Router) {}
+  links:any[] = [];
+
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   ngOnInit() {
-    //We update the current relative url after each navigation
+    //We update the current url after each navigation
     this.router.events.subscribe(event => {
       if (event.constructor.name === "NavigationEnd") {
         this.href = this.router.url;
       }
     })
+
+    this.links = [
+      {link: "/", visual: "<span>Plats de la semaine</span>", display: true},
+      {link: "/carte", visual: "<span>Carte</span>", display: true},
+      {link: "/login", visual: '<img src="../../../assets/user.svg"/>', display: this.authService.isLoggedOut()},
+      {link: "/logout", visual: '<img src="../../../assets/logout.svg"/>', display: this.authService.isLoggedIn()},
+      {link: "/compte", visual: '<img src="../../../assets/user.svg"/>', display: this.authService.isLoggedIn() && !this.authService.isLunchlady()},
+      {link: "/panier", visual: '<img src="../../../assets/cart-shopping.svg"/>', display: !this.authService.isLunchlady()},
+      {link: "/recap", visual: '<img src="../../../assets/list.svg"/>', display: this.authService.isLunchlady()},
+      {link: "/userSearch", visual: '<img src="../../../assets/search.svg"/>', display: this.authService.isLunchlady()},
+      {link: "/parameters", visual: '<img src="../../../assets/parameters.svg"/>', display: this.authService.isLunchlady()},
+    ]
   }
 
 }

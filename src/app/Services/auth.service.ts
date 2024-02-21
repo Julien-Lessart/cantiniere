@@ -97,9 +97,13 @@ export class AuthService {
    * @returns {Moment} Date a laquelle le token expire
    * */ 
   getExpiration():Moment {
-    const expiration = localStorage.getItem("expires_at") || "";
+    const expiration = localStorage.getItem("expires_at") || "0";
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
+  }
+
+  isLunchlady():boolean {
+    return localStorage.getItem("roles")?.includes("ROLE_LUNCHLADY") == true;
   }
 
   

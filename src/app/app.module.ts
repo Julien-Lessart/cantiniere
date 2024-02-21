@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './Components/register/register.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { JwtModule } from "@auth0/angular-jwt";
+import { NavbarLinkComponent } from './Components/navbar-link/navbar-link.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -21,6 +22,7 @@ export function tokenGetter() {
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    NavbarLinkComponent,
   ],
   imports: [
     BrowserModule,
