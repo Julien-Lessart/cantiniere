@@ -9,6 +9,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './Components/register/register.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { JwtModule } from "@auth0/angular-jwt";
+import { FormsComponent } from './Components/forms/forms.component';
+import { ForgetComponent } from './Components/forget/forget.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -18,6 +20,8 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    FormsComponent,
+    ForgetComponent,
   ],
   imports: [
     BrowserModule,

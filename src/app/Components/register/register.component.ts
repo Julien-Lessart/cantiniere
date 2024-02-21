@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignUpModel } from '../login/login.component';
 import { AuthService } from '../../Services/auth.service';
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  @Input()
+  fieldsUser = [{id:'nom', label:'Nom', isMail:false, isPassword:false}, {id:'prenom', label:'Prenom', isMail:false, isPassword:false}, {id:'email', label:'E-mail', isMail:true, isPassword:false}, {id:'password', label:'Mot de passe', isMail:false, isPassword:true}];
   registerUserData!:FormGroup;
   configFormRegister:any = { 
     email : new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
@@ -24,8 +26,8 @@ constructor(private _auth: AuthService, private router: Router) {
 }
 
 
-onRegister(){
-  const localUser = localStorage.getItem('users');
+onRegister(user:SignUpModel){
+  /* const localUser = localStorage.getItem('users');
   if(localUser != null){
     const users = JSON.parse(localUser);
     users.push(this.registerObj);
@@ -34,12 +36,12 @@ onRegister(){
     const users = [];
     users.push(this.registerObj);
     localStorage.setItem('users', JSON.stringify(users))
-  }
-  this.registerObj = Object.assign(this.registerObj, this.registerUserData.value);
+  } */
+  console.log(user);
+  this.registerObj = Object.assign(this.registerObj, user);
   this._auth.registerUser(this.registerObj).subscribe(
     res => {
-      this._auth.setSession({idToken: res.headers.get('Authorization')});
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     },
     err => console.log(err)
   );

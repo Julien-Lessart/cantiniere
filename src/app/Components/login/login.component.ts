@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { JwtHelperService  } from '@auth0/angular-jwt';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  @Input()
+  fieldsUser = [{id:'email', label:'E-mail', isMail:true, isPassword:false}, {id:'password', label:'Mot de passe', isMail:false, isPassword:true}];
   loginUserData!:FormGroup;
   configFormLogin:any = { 
     email : new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
@@ -26,9 +28,9 @@ objectsHaveSameKeys(...objects:any[]) {
   return objects.every(object => union.size === Object.keys(object).length);
 }
 
-onLogin(){
+onLogin(user:SignInModel){
   if(this._auth.isLoggedOut()){
-    this.loginObj = Object.assign({}, this.loginUserData.value);
+    this.loginObj = Object.assign({}, user);
     this._auth.loginUser(this.loginObj).subscribe(
       res => {
         /* const configSession:[{}] = [{}];
