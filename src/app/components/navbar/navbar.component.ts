@@ -7,12 +7,18 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  //The current relative url
   href:string = "";
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.href = this.router.url;
+    //We update the current relative url after each navigation
+    this.router.events.subscribe(event => {
+      if (event.constructor.name === "NavigationEnd") {
+        this.href = this.router.url;
+      }
+    })
   }
 
 }

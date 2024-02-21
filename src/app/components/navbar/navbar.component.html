@@ -7,7 +7,7 @@
 
         <span class="links">
 
-            <a routerLink="/semaine" [ngClass]="{'current' : this.href == '/semaine'}">
+            <a routerLink="/" [ngClass]="{'current' : this.href == '/'}">
                 <span>Plats de la semaine</span>
             </a>
 
@@ -29,6 +29,18 @@
 
             <a routerLink="/panier" [ngClass]="{'current' : this.href == '/panier'}">
                 <img src="..\..\..\assets\cart-shopping.svg"/>
+            </a>
+
+            <a routerLink="/recap" [ngClass]="{'current' : this.href == '/recap'}">
+                <img src="..\..\..\assets\list.svg"/>
+            </a>
+
+            <a routerLink="/userSearch" [ngClass]="{'current' : this.href == '/userSearch'}">
+                <img src="..\..\..\assets\search.svg"/>
+            </a>
+
+            <a routerLink="/parameters" [ngClass]="{'current' : this.href == '/parameters'}">
+                <img src="..\..\..\assets\parameters.svg"/>
             </a>
 
         </span>
