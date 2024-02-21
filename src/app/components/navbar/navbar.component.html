@@ -1,0 +1,36 @@
+<nav>
+    <div>
+        <span class="logo">
+            <span>Stone Education</span>
+            <span>CANTINERIE</span>
+        </span>
+
+        <span class="links">
+
+            <a routerLink="/semaine" [ngClass]="{'current' : this.href == '/semaine'}">
+                <span>Plats de la semaine</span>
+            </a>
+
+            <a routerLink="/carte" [ngClass]="{'current' : this.href == '/carte'}">
+                <span>Carte</span>
+            </a>
+
+            <a routerLink="/login" [ngClass]="{'current' : this.href == '/login'}">
+                <span>Login</span>
+            </a>
+
+            <a routerLink="/logout" [ngClass]="{'current' : this.href == '/logout'}">
+                <img src="..\..\..\assets\logout.svg"/>
+            </a>
+            
+            <a routerLink="/compte" [ngClass]="{'current' : this.href == '/compte'}">
+                <img src="..\..\..\assets\user.svg"/>
+            </a>
+
+            <a routerLink="/panier" [ngClass]="{'current' : this.href == '/panier'}">
+                <img src="..\..\..\assets\cart-shopping.svg"/>
+            </a>
+
+        </span>
+    </div>
+</nav>

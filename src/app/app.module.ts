@@ -4,6 +4,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './Components/register/register.component';
@@ -13,9 +14,11 @@ export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
     LoginComponent,
     RegisterComponent,
   ],
