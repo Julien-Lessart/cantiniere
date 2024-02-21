@@ -2,13 +2,15 @@
   display: flex;
   max-width: 90%;
   padding: 0 60px;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
 .filterButton {
   min-width: 125px;
+  margin: 0 10px;
   color: #1d6154;
+  font-weight: bold;
   cursor: pointer;
   width: fit-content;
   padding: 9px 39px;

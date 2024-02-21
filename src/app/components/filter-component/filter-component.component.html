@@ -6,11 +6,12 @@
 >
   <div *ngFor="let option of filteredOptions; index as i; first as isFirst">
     <div
-      [ngClass]="isFirst ? 'selected filterButton' : 'filterButton'"
-      style="cursor: pointer; margin: 20px 0"
+      [ngClass]="
+        option === filteredOption ? 'selected filterButton' : 'filterButton'
+      "
       (click)="setValue(option)"
     >
-      {{ option }}
+      {{ option | titlecase }}
     </div>
   </div>
 </div>
