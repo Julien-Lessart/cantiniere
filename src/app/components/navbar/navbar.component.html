@@ -5,48 +5,14 @@
       <span>CANTINERIE</span>
     </span>
 
-    <span class="links">
-      <a routerLink="/" [ngClass]="{ current: this.href == '/' }">
-        <span>Plats de la semaine</span>
-      </a>
+        <ul class="links">
 
-      <a routerLink="/carte" [ngClass]="{ current: this.href == '/carte' }">
-        <span>Carte</span>
-      </a>
+            @for (link of links; track link.link){
+                @if(link.display) {
+                    <app-navbar-link [link]="link.link" [visual]="link.visual" [active]="this.href==link.link" />
+                }
+            }
 
-      <a routerLink="/login" [ngClass]="{ current: this.href == '/login' }">
-        <span>Login</span>
-      </a>
-
-      <a routerLink="/logout" [ngClass]="{ current: this.href == '/logout' }">
-        <img src="..\..\..\assets\logout.svg" />
-      </a>
-
-      <a routerLink="/compte" [ngClass]="{ current: this.href == '/compte' }">
-        <img src="..\..\..\assets\user.svg" />
-      </a>
-
-      <a routerLink="/panier" [ngClass]="{ current: this.href == '/panier' }">
-        <img src="..\..\..\assets\cart-shopping.svg" />
-      </a>
-
-      <a routerLink="/recap" [ngClass]="{ current: this.href == '/recap' }">
-        <img src="..\..\..\assets\list.svg" />
-      </a>
-
-      <a
-        routerLink="/userSearch"
-        [ngClass]="{ current: this.href == '/userSearch' }"
-      >
-        <img src="..\..\..\assets\search.svg" />
-      </a>
-
-      <a
-        routerLink="/parameters"
-        [ngClass]="{ current: this.href == '/parameters' }"
-      >
-        <img src="..\..\..\assets\parameters.svg" />
-      </a>
-    </span>
-  </div>
+        </ul>
+    </div>
 </nav>

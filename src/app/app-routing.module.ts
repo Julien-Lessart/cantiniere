@@ -7,7 +7,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 const routes: Routes = [
   {
     path: '',
-
     pathMatch: 'full',
     component: HomePageComponent,
   },
