@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { AuthService } from '../../Services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService  } from '@auth0/angular-jwt';
+import { table } from '../../models/table.model';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,6 +13,8 @@ import { JwtHelperService  } from '@auth0/angular-jwt';
 export class LoginComponent {
   @Input()
   fieldsUser = [{id:'email', label:'E-mail', isMail:true, isPassword:false}, {id:'password', label:'Mot de passe', isMail:false, isPassword:true}];
+  
+  
   loginUserData!:FormGroup;
   configFormLogin:any = { 
     email : new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),

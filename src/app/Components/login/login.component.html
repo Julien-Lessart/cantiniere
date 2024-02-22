@@ -1,16 +1,5 @@
 <h2>Se connecter</h2>
 <app-forms [fields]="fieldsUser" (newItemEvent)="onLogin($event)"></app-forms>
-<!-- <form [formGroup]="loginUserData" (ngSubmit)="onLogin()">
-  <div>
-    <label for="email">email</label>
-    <input type="text" name="email" formControlName="email" />
-  </div>
-  <div>
-    <label for="password">password</label>
-    <input type="text" name="password" formControlName="password" />
-  </div>
-  <button type="submit">Validation</button>
-</form> -->
 <div class="content">
   <button routerLink="/register">Crée un compte</button>
   <div>
