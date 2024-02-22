@@ -1,20 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-filter-component',
   templateUrl: './filter-component.component.html',
   styleUrl: './filter-component.component.css',
 })
-export class FilterComponentComponent implements OnInit {
-  @Input() filteredOptions: string[] = [''];
+export class FilterComponentComponent {
+  @Input() filteredOptions: { data: any; name: string }[] = [
+    { data: new Date().getDay(), name: '' },
+  ];
 
-  filteredOption: string = '';
+  filteredOption?: number = new Date().getDay();
+  /*
   ngOnInit(): void {
-    this.filteredOption = this.filteredOptions[0];
+    this.filteredOption = this.filteredOptions[0].data;
   }
+  */
 
-  setValue(filter: string) {
-    console.log(this.filteredOption);
+  setValue(filter: number) {
+    console.log(new Date().getDay());
     this.filteredOption = filter;
     console.log(this.filteredOption);
   }

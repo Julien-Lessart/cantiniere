@@ -9,12 +9,30 @@ import Meal from '../../models/meal.model';
 export class HomePageComponent implements OnInit {
   datasMeal: Meal[] = [];
   constructor(private MealService: MealService) {}
-  private date = new Date();
+  private currentDate: any = new Date();
+  calculateWeek = () => {
+    const startDate: any = new Date(this.currentDate.getFullYear(), 0, 1);
+    let days = Math.floor(
+      (this.currentDate - startDate) / (24 * 60 * 60 * 1000)
+    );
 
+    let weekNumber = Math.ceil(days / 7);
+    return weekNumber;
+  };
+
+  private thisWeekNumber = this.calculateWeek();
+  private thisdayNumber = this.currentDate.getDay();
   ngOnInit(): void {
-    this.MealService.getMeals().subscribe((datasMeal) => {
+    this.MealService.getTodayMeals(
+      this.thisWeekNumber,
+      this.thisdayNumber
+    ).subscribe((datasMeal) => {
       this.datasMeal = datasMeal;
     });
-    console.log(this.datasMeal, this.date);
+    console.log({
+      data: this.datasMeal,
+      week: this.thisWeekNumber,
+      day: this.thisdayNumber,
+    });
   }
 }

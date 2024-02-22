@@ -8,9 +8,10 @@ import Meal from '../models/meal.model';
 export class MealService {
   constructor(private HttpClient: HttpClient) {}
   private apiUrl = 'http://localhost:8080/stone.lunchtime';
-  private week = new Date();
 
-  getMeals(): Observable<Meal[]> {
-    return this.HttpClient.get<Meal[]>(`${this.apiUrl}/meal/findall`);
+  getTodayMeals(week: number, day: number): Observable<Meal[]> {
+    return this.HttpClient.get<Meal[]>(
+      `${this.apiUrl}/menu/findallavailableforweekandday/${week}/${day}`
+    );
   }
 }
