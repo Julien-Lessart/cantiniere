@@ -55,6 +55,7 @@ onLogin(user:SignInModel){
       },
       err => console.log(err)
       );
+      this.router.navigate(['/']);
     }
   }
 }

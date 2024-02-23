@@ -26,6 +26,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -45,6 +46,7 @@ export function tokenGetter() {
     HomePageComponent,
 
     NavbarLinkComponent,
+      LogoutComponent,
   ],
   imports: [
     BrowserModule,
