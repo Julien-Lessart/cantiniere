@@ -1,0 +1,28 @@
+.underline {
+    height: 3px;
+	background-color: transparent;
+	width: 0%;
+	transition: width 0.2s, background-color 0.5s;
+	margin: 0 auto;
+}
+
+li {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+a {
+    height: 100%
+}
+
+li.active-link .underline {
+    width: 100%;
+	background-color: #1D6154;
+}
+
+li:hover .underline {
+    background-color: #1D6154;
+	width: 100%;
+}

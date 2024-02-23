@@ -1,0 +1,24 @@
+<div
+  ngDefaultControl
+  [(ngModel)]="filteredOption"
+  name="locationFilter"
+  id="Filter"
+>
+  <div *ngFor="let option of filteredOptions; index as i; first as isFirst">
+    <div
+      [ngClass]="
+        option.data === filteredOption
+          ? 'selected filterButton'
+          : 'filterButton'
+      "
+      (click)="setValue(option.data)"
+    >
+      {{ option.name | titlecase }}
+    </div>
+  </div>
+</div>
+<div [ngClass]="filteredOption === 1 ? 'display' : 'hidden'">Lundi</div>
+<div [ngClass]="filteredOption === 2 ? 'display' : 'hidden'">Mardi</div>
+<div [ngClass]="filteredOption === 3 ? 'display' : 'hidden'">Mercredi</div>
+<div [ngClass]="filteredOption === 4 ? 'display' : 'hidden'">Jeudi</div>
+<div [ngClass]="filteredOption === 5 ? 'display' : 'hidden'">Vendredi</div>

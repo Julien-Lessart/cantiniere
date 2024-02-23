@@ -1,51 +1,69 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './Components/login/login.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { RegisterComponent } from './Components/register/register.component';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { JwtModule } from "@auth0/angular-jwt";
-import { FormsComponent } from './Components/form/forms.component';
-import { ForgetComponent } from './Components/forget/forget.component';
-import { TableComponent } from './Components/table/table.component';
-import { SortDirective } from './directives/sort/sort.directive';
-export function tokenGetter() {
-  return localStorage.getItem("access_token");
-}
 
+import { FormsComponent } from './components/forms/forms.component';
+
+import { FilterComponentComponent } from './components/filter-component/filter-component.component';
+
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/register/register.component';
+
+import { HomePageComponent } from './pages/home-page/home-page.component';
+
+import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    FilterComponentComponent,
+
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
     FormsComponent,
-    ForgetComponent,
-    TableComponent,
-    SortDirective,
+
+    HomePageComponent,
+
+    NavbarLinkComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, 
-    ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive,JwtModule.forRoot({
+    FormsModule,
+    ReactiveFormsModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["example.com"],
-        disallowedRoutes: ["http://example.com/examplebadroute/"],
+        allowedDomains: ['example.com'],
+        disallowedRoutes: ['http://example.com/examplebadroute/'],
       },
     }),
   ],
-  providers: [
-    provideClientHydration(), provideHttpClient(withFetch())
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration(), provideHttpClient(withFetch())],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
