@@ -1,7 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+<<<<<<< Updated upstream:src/app/Services/auth.service.ts
 import moment, { Moment } from 'moment';
 import { SignInModel, SignUpModel } from '../components/login/login.component';
+=======
+import moment, { Moment } from "moment";
+import { SignUpModel, SignInModel } from '../../components/login/login.component';
+>>>>>>> Stashed changes:src/app/services/auth/auth.service.ts
 @Injectable({
   providedIn: 'root',
 })
@@ -41,12 +46,18 @@ export class AuthService {
 
   /**
    * Permet d'ajouter le token d'authentification au local storage avec son expiration
+<<<<<<< Updated upstream:src/app/Services/auth.service.ts
    * @param authResult L'objet de laa réponse de l'authentification
    */
   setSession(authResult: any): void {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
+=======
+   * @param authResult L'objet de laa réponse de l'authentification 
+   */ 
+  setSession(authResult:any):void {
+>>>>>>> Stashed changes:src/app/services/auth/auth.service.ts
     localStorage.setItem('id_token', authResult[1].idToken);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('expires_at', JSON.stringify(authResult[1].user.exp));
     localStorage.setItem('roles', authResult[1].user.roles);
     localStorage.setItem('user', JSON.stringify(authResult[1].user.user));
   }
@@ -81,7 +92,13 @@ export class AuthService {
    * Pour savoir si l'utilisateur est toujours connecté
    * @returns {boolean} true si le token n'est pas encore périmé
    */
+<<<<<<< Updated upstream:src/app/Services/auth.service.ts
   public isLoggedIn(): boolean {
+=======
+  public isLoggedIn():boolean {
+
+    console.log('isLoggedIn :', moment().isBefore(this.getExpiration()));
+>>>>>>> Stashed changes:src/app/services/auth/auth.service.ts
     return moment().isBefore(this.getExpiration());
   }
 
@@ -100,13 +117,23 @@ export class AuthService {
   getExpiration():Moment {
     const expiration = localStorage.getItem("expires_at") || "0";
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return moment(moment.unix(expiresAt).format());
   }
 
+<<<<<<< Updated upstream:src/app/Services/auth.service.ts
   isLunchlady():boolean {
     return localStorage.getItem("roles")?.includes("ROLE_LUNCHLADY") == true;
   }
 
+=======
+  /**
+   * Permet de savoir si c'est la cantinière qui est connecté grace a son role stocke dans le localStorage
+   * @returns True si l'utilisateur est la cantinière
+   */
+  isLunchlady():boolean {
+    return localStorage.getItem("roles")?.includes("ROLE_LUNCHLADY") == true;
+  }
+>>>>>>> Stashed changes:src/app/services/auth/auth.service.ts
   
 }
 
