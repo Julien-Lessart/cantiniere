@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'parameters', component: ConstraintsComponent}
+  { path: 'parameters', component: ConstraintsComponent},
   { path: 'logout', component: LogoutComponent },
 ];
 
