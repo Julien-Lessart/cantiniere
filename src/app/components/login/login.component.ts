@@ -10,7 +10,7 @@ import { JwtHelperService  } from '@auth0/angular-jwt';
 })
 export class LoginComponent {
   @Input()
-  fieldsUser = [{id:'email', label:'E-mail', isMail:true, isPassword:false}, {id:'password', label:'Mot de passe', isMail:false, isPassword:true}];
+  fieldsUser = [{id:'email', label:'E-mail', control: new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]), type: "email"}, {id:'password', label:'Mot de passe', control: new FormControl('', [Validators.required,Validators.min(2)]), type: "password"}];
   loginUserData!:FormGroup;
   configFormLogin:any = { 
     email : new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),

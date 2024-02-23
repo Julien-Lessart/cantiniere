@@ -26,6 +26,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
+import { ConstraintsComponent } from './components/constraints/constraints.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
 export function tokenGetter() {
@@ -46,6 +47,7 @@ export function tokenGetter() {
     HomePageComponent,
 
     NavbarLinkComponent,
+    ConstraintsComponent,
       LogoutComponent,
   ],
   imports: [
