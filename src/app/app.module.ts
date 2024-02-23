@@ -23,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
+import { ConstraintsComponent } from './components/constraints/constraints.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -38,6 +39,7 @@ export function tokenGetter() {
     RegisterComponent,
     FormsComponent,
     NavbarLinkComponent,
+    ConstraintsComponent,
   ],
   imports: [
     BrowserModule,
