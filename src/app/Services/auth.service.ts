@@ -7,7 +7,7 @@ import { SignUpModel, SignInModel } from '../components/login/login.component';
 })
 export class AuthService {
   constructor(private _http: HttpClient) {}
-  private _config = new configBack();
+  private _config = new ConfigBack();
   // Query pour la connexion utilisateur
   _loginQuery: string = `${this._config.protocol}://${this._config.domain}:${this._config.port}/${this._config.context}/login`;
 
@@ -115,7 +115,7 @@ export class AuthService {
 }
 
 // Config de l'url
-export class configBack {
+export class ConfigBack {
   protocol: string = 'http';
   domain: string = 'localhost';
   port: string = '8080';
