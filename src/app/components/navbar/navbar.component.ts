@@ -17,7 +17,9 @@ export class NavbarComponent {
    * visual: the innerHTML of the link
    * display: Should the link be displayed to current user
    */
-  links:{link:string, visual:string, display:boolean}[] = [];
+  links:{link:string, visual:string, display:Array<string>}[] = [];
+  isLunchlady:boolean = false;
+  isLoggedin:boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {
   }
@@ -30,17 +32,40 @@ export class NavbarComponent {
       }
     })
 
+    this.authService.isAuthenticated$.subscribe(() => {
+      this.isLunchlady = this.authService.isLunchlady();
+      this.isLoggedin = this.authService.isLoggedIn();
+    })
+
     this.links = [
-      {link: "/", visual: "<span>Plats de la semaine</span>", display: true},
-      {link: "/carte", visual: "<span>Carte</span>", display: true},
-      {link: "/login", visual: '<img src="../../../assets/user.svg"/>', display: this.authService.isLoggedOut()},
-      {link: "/logout", visual: '<img src="../../../assets/logout.svg"/>', display: this.authService.isLoggedIn()},
-      {link: "/compte", visual: '<img src="../../../assets/user.svg"/>', display: this.authService.isLoggedIn() && !this.authService.isLunchlady()},
-      {link: "/panier", visual: '<img src="../../../assets/cart-shopping.svg"/>', display: !this.authService.isLunchlady()},
-      {link: "/recap", visual: '<img src="../../../assets/list.svg"/>', display: this.authService.isLunchlady()},
-      {link: "/userSearch", visual: '<img src="../../../assets/search.svg"/>', display: this.authService.isLunchlady()},
-      {link: "/parameters", visual: '<img src="../../../assets/parameters.svg"/>', display: this.authService.isLunchlady()},
+      {link: "/", visual: "<span>Plats de la semaine</span>", display: []},
+      {link: "/carte", visual: "<span>Carte</span>", display: []},
+      {link: "/login", visual: '<img src="../../../assets/user.svg"/>', display: ["loggedOut"]},
+      {link: "/logout", visual: '<img src="../../../assets/logout.svg"/>', display: ["loggedIn"]},
+      {link: "/compte", visual: '<img src="../../../assets/user.svg"/>', display: ["isntLunchlady", "loggedIn"]},
+      {link: "/panier", visual: '<img src="../../../assets/cart-shopping.svg"/>', display: ["isntLunchlady"]},
+      {link: "/recap", visual: '<img src="../../../assets/list.svg"/>', display: ["isLunchlady"]},
+      {link: "/userSearch", visual: '<img src="../../../assets/search.svg"/>', display: ["isLunchlady"]},
+      {link: "/parameters", visual: '<img src="../../../assets/parameters.svg"/>', display: ["isLunchlady"]},
     ]
+  }
+
+  shouldDisplay = (conditions:Array<string>):boolean => {
+    if(conditions.includes("loggedIn") && !this.isLoggedin) {
+      return false;
+    }
+    else if(conditions.includes("loggedOut") && this.isLoggedin) {
+      return false;
+    }
+
+    if(conditions.includes("isLunchlady") && (!this.isLunchlady || !this.isLoggedin)) {
+      return false;
+    }
+    else if(conditions.includes("isntLunchlady") && this.isLunchlady) {
+      return false;
+    }
+
+    return true;
   }
 
 }

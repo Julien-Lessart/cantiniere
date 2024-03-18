@@ -2,10 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment, { Moment } from "moment";
 import { SignUpModel, SignInModel } from '../components/login/login.component';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  isAuthenticated$:Observable<boolean> = this.isAuthenticatedSubject.asObservable();
+
   constructor(private _http: HttpClient) {}
   private _config = new ConfigBack();
   // Query pour la connexion utilisateur
@@ -48,6 +52,8 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(authResult[1].user.exp));
     localStorage.setItem('roles', authResult[1].user.roles);
     localStorage.setItem('user', JSON.stringify(authResult[1].user.user));
+
+    this.isAuthenticatedSubject.next(true);
   }
 
   /**
@@ -74,6 +80,9 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('user');
+    localStorage.removeItem('roles');
+
+    this.isAuthenticatedSubject.next(false);
   }
 
   /**
