@@ -24,27 +24,29 @@ export class ConstraintsComponent {
           maximumOrderPerDay: res.body.maximumOrderPerDay,
           rateVAT: res.body.rateVAT
         };
+
+        this.fieldsConstraints = [
+          {
+            id:'maximumOrderPerDay',
+            label:'Nombre limite de plat :',
+            type: "number",
+            control: new FormControl(this.currentConstraints.maximumOrderPerDay, [Validators.required,Validators.min(1)])
+          },
+          {
+            id:'orderTimeLimit',
+            label:'Heure limite pour passer commande :', 
+            type: "time",
+            control: new FormControl(this.currentConstraints.orderTimeLimit, [Validators.required,Validators.min(1)])
+          }
+        ];
+
+        this.fieldsConstraints.forEach(field => {
+          this.form.addControl(field.id, field.control);
+        });
+
       }
     );
-
-    this.fieldsConstraints = [
-      {
-        id:'maximumOrderPerDay',
-        label:'Nombre limite de plat :',
-        type: "number",
-        control: new FormControl(this.currentConstraints.maximumOrderPerDay, [Validators.required,Validators.min(1)])
-      },
-      {
-        id:'orderTimeLimit',
-        label:'Heure limite pour passer commande :', 
-        type: "time",
-        control: new FormControl(this.currentConstraints.orderTimeLimit, [Validators.required,Validators.min(1)])
-      }
-    ];
-
-    this.fieldsConstraints.forEach(field => {
-      this.form.addControl(field.id, field.control);
-    })
+    
   }
 
   onSubmit = (event:{maximumOrderPerDay: number, orderTimeLimit: string}):void => {
