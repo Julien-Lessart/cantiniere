@@ -27,4 +27,5 @@ export interface table{
     modification:boolean;
     delete:boolean;
     compte:boolean;
+    id:number;
 }

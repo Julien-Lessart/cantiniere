@@ -16,8 +16,7 @@
     },...
  */
 
-import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
-import {SortDirective, SortEvent, compare } from '../../directives/sort/sort.directive';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { table} from '../../models/table.model';
 @Component({
   selector: 'app-table',
@@ -26,39 +25,56 @@ import { table} from '../../models/table.model';
 })
 export class TableComponent implements OnInit{
 
-  @Input() tableHeader!:table;
   @Input() tableData!:Array<table>;
-  tableDataCompare!:Array<table>;
-  i:number = 0;
+  @Input() tableHeader!:Array<keyof table>;
+  @Output() newItemEvent = new EventEmitter<any>();
+  sorting: SortingInterface = {
+    column:'prix',
+    order:'desc'
+  }
   
-  // Permet de voir les changement effectuer sur le tableau
-  @ViewChildren(SortDirective)
-  headers!:QueryList<SortDirective>;
   
   ngOnInit(){
-    // Pour pas avoir un tableau vide
-    this.tableDataCompare = [...this.tableData];
   }
 
+  capitalize(str:string):string{
+    return str.charAt(0).toUpperCase() + str.substring(1);
+  }
 
-  // TO DO les données ne sont pas afficher dans le bon ordre
-  onSort({ column, direction }: SortEvent) {
-    // resetting other headers
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
+  isDescSorting(column:string):boolean{
+    return this.sorting.column === column && this.sorting.order ==='desc';
+  }
+  
+  isAscSorting(column:string):boolean{
+    return this.sorting.column === column && this.sorting.order ==='asc';
+  }
 
-    // sorting data
-    if (direction === '' || column === '') {
-      this.tableData = this.tableDataCompare;
-    } else {
-      this.tableData = [...this.tableDataCompare].sort((a, b) => {
-        const res = compare(a[column], b[column]);
-        return direction === 'asc' ? res : -res;
-      });
+  sortTable(column:string):void{
+    const futureSortignOrder = this.isDescSorting(column) ? 'asc' : 'desc';
+    if(this.isAscSorting(column) && column === 'prix') console.log('PA', this.tableData.sort((a, b) => parseFloat(a.prix) - parseFloat(b.prix)));
+    else if(this.isDescSorting(column) && column === 'prix') console.log('PD', this.tableData.sort((a, b) => parseFloat(b.prix) - parseFloat(a.prix)));
+    else if(this.isAscSorting(column) && column === 'designation') console.log('DA', this.tableData.sort((a, b) => a.designation < b.designation ? -1 : 1));
+    else if(this.isDescSorting(column) && column === 'designation') console.log('DD', this.tableData.sort((a, b) => a.designation > b.designation ? -1 : 1));
+    else if(this.isAscSorting(column) && column === 'jour') console.log('JA', this.tableData.sort((a, b) => a.jour < b.jour ? -1 : 1));
+    else if(this.isDescSorting(column) && column === 'jour') console.log('JD', this.tableData.sort((a, b) => a.jour > b.jour ? -1 : 1));
+    this.sorting = {
+      column,
+      order: futureSortignOrder
     }
   }
+
+  onClickModification(data:any){
+    this.newItemEvent.emit({id:parseInt(data.target.attributes.id.value), str:'modification'});
+  }
+  onClickDelete(data:any){
+    this.newItemEvent.emit({id:parseInt(data.target.attributes.id.value), str:'delete'});
+  }
+}
+
+
+
+export interface SortingInterface {
+  column: string;
+  order: 'asc' | 'desc';
 }
 

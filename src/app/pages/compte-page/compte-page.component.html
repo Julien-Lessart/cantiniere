@@ -1,2 +1,46 @@
-<app-cagnotte></app-cagnotte>
-<app-table></app-table>
+<div class="content">
+  <div class="userData">
+    <div>Prénom : {{ userData.name }}</div>
+    <div>Nom : {{ userData.firstname }}</div>
+    <div>Adresse Email : {{ userData.email }}</div>
+  </div>
+  <div class="cagnotte">
+    <app-cagnotte [wallet]="wallet"></app-cagnotte>
+  </div>
+</div>
+<app-table
+  [tableHeader]="dataHeader"
+  [tableData]="dataTable"
+  (newItemEvent)="onUserInput($event)"
+></app-table>
+
+<div class="buttonDiv">
+  <div>
+    <button>Modifier mes infos</button>
+  </div>
+  <div>
+    <button class="template" (click)="openModalTemplate(view)">
+      Supprimer mon compte
+    </button>
+  </div>
+</div>
+
+<ng-template #view>
+  <div class="modal-container">
+    <div class="modal-container__title">
+      <h2>Supprimer mon compte</h2>
+    </div>
+    <div class="modal-container__content">
+      <div class="modal-container__content__current">
+        <div>Voulez vous supprimer le compte :</div>
+        <div>Prénom : {{ userData.name }}</div>
+        <div>Nom : {{ userData.firstname }}</div>
+        <div>Adresse Email : {{ userData.email }}</div>
+      </div>
+    </div>
+    <div class="modal-container__footer">
+      <button (click)="onClickValiderDelete()">Valider</button>
+      <button (click)="onClickAnnuler()">Annuler</button>
+    </div>
+  </div>
+</ng-template>

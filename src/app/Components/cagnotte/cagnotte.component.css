@@ -1,0 +1,20 @@
+.content {
+  border: 0.1em solid #1d6154;
+  width: fit-content;
+  height: 2em;
+  border-radius: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+}
+
+.content p {
+  color: #1d6154;
+  font-family: "Syne";
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  margin-left: 2em;
+  margin-right: 2em;
+}

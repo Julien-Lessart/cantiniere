@@ -22,42 +22,25 @@ export class LoginComponent {
   }
   loginObj =  new SignInModel();
 
-constructor(private _auth: AuthService, private router:Router) {
-  this.loginUserData = new FormGroup(this.configFormLogin);
-}
+  constructor(private _auth: AuthService, private router:Router) {
+    this.loginUserData = new FormGroup(this.configFormLogin);
+  }
 
-objectsHaveSameKeys(...objects:any[]) {
-  const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
-  const union = new Set(allKeys);
-  return objects.every(object => union.size === Object.keys(object).length);
-}
-
-onLogin(user:SignInModel){
-  if(this._auth.isLoggedOut()){
-    this.loginObj = Object.assign({}, user);
-    this._auth.loginUser(this.loginObj).subscribe(
-      res => {
-        /* const configSession:[{}] = [{}];
-        const localUser = JSON.parse(localStorage.getItem('user') || "{}");
-        if(this.objectsHaveSameKeys(localUser, this.loginObj)){
-           configSession.push({idToken: res.headers.get('Authorization')});
-           this.router.navigate(['/home']);
-        }else{
+  onLogin(user:SignInModel){
+    if(this._auth.isLoggedOut()){
+      this.loginObj = Object.assign({}, user);
+      this._auth.loginUser(this.loginObj).subscribe(
+        res => {
+          const configSession:[{}] = [{}];
           const user = [];
           user.push(this.loginObj);
-          configSession.push({idToken: res.headers.get('Authorization'), user:JSON.stringify(user)});
-        } */
-        const configSession:[{}] = [{}];
-        const user = [];
-        user.push(this.loginObj);
-        const helper = new JwtHelperService();
-        const decodedToken = helper.decodeToken(res.headers.get('Authorization') || "");
-        configSession.push({idToken: res.headers.get('Authorization'), user:decodedToken});
-        this._auth.setSession(configSession);
-      /* this._auth.setUser(this.loginObj.email); */
-      /* this.router.navigate(['/home']); */
-      },
-      err => console.log(err)
+          const helper = new JwtHelperService();
+          const decodedToken = helper.decodeToken(res.headers.get('Authorization') || "");
+          configSession.push({idToken: res.headers.get('Authorization'), user:decodedToken});
+          this._auth.setSession(configSession);
+          this.router.navigate(['/home']);
+        },
+        err => console.log(err)
       );
     }
   }

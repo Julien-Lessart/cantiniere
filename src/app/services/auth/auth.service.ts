@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment, { Moment } from "moment";
-import { SignInModel, SignUpModel } from '../../../Components/login/login.component';
+import { SignInModel, SignUpModel } from '../../components/login/login.component';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,8 @@ export class AuthService {
 
   // Query pour la création d'un utilisateur
   _registerQuery:string = `${this._config.protocol}://${this._config.domain}:${this._config.port}/${this._config.context}/user/register`;
+  // Query pour la destruction d'un utilisateur
+  _deleteQuery:string = `${this._config.protocol}://${this._config.domain}:${this._config.port}/${this._config.context}/user/delete`;
 
   /**
    * Permet le test du mail et du mot de passe pour la connexion
@@ -45,27 +48,10 @@ export class AuthService {
   setSession(authResult:any):void {
     const expiresAt = moment().add(authResult.expiresIn,'second');
     localStorage.setItem('id_token', authResult[1].idToken);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('expires_at', JSON.stringify(authResult[1].user.exp));
     localStorage.setItem('roles', authResult[1].user.roles);
     localStorage.setItem('user', JSON.stringify(authResult[1].user.user));
   }          
-
-   /**
-   * Permet de mettre les données de l'utlisateur en cache
-   * @param email Pour pouvoir tester si l'utilisateur est le même car les mails sont unique
-   */
-   /* setUser(email:string):void{
-    let indexOfUser = 0;
-    let res = this.findAll();
-    console.log(res);
-    console.log(Object.keys(res).length);
-    for(let i = 0; i > Object.keys(res).length; i++ ){
-      if(res[i].email === email){
-        indexOfUser = i;
-      }
-    }
-    localStorage.setItem('user', JSON.stringify(res[indexOfUser]));
-  } */
 
   /**
    * Permet de supprimer son token et donc de déconnecté l'utlisateur
@@ -74,6 +60,7 @@ export class AuthService {
       localStorage.removeItem("id_token");
       localStorage.removeItem("expires_at");
       localStorage.removeItem("user");
+      localStorage.removeItem("roles");
   }
 
   /**
@@ -97,12 +84,29 @@ export class AuthService {
    * @returns {Moment} Date a laquelle le token expire
    * */ 
   getExpiration():Moment {
-    const expiration = localStorage.getItem("expires_at") || "";
+    const expiration = localStorage.getItem("expires_at") || "0";
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return moment(moment.unix(expiresAt).format());
   }
 
+   /**
+   * Permet de savoir si c'est la cantinière qui est connecté grace a son role stocke dans le localStorage
+   * @returns True si l'utilisateur est la cantinière
+   */
+   isLunchlady():boolean {
+    return localStorage.getItem("roles")?.includes("ROLE_LUNCHLADY") == true;
+  }
   
+
+  deleteUser(userId:number):Observable<any>{
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', localStorage.getItem('id_token') || "");
+    const requestOptions = { 
+      headers: headers,
+    }; 
+    return this._http.delete<any>(this._deleteQuery + `/${userId}`, {headers:headers, observe:'response'});
+  }
 }
 
 // Config de l'url

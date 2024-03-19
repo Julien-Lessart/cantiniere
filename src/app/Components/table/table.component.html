@@ -2,54 +2,10 @@
   <table>
     <thead>
       <tr class="table__header">
-        <th
-          class="table__header__nom"
-          scope="col"
-          sortable="nom"
-          (sort)="onSort($event)"
-          *ngIf="tableHeader.nom"
-        >
-          {{ tableHeader.nom }}
-        </th>
-        <th
-          scope="col"
-          sortable="prenom"
-          (sort)="onSort($event)"
-          *ngIf="tableHeader.prenom"
-        >
-          {{ tableHeader.prenom }}
-        </th>
-        <th
-          scope="col"
-          sortable="email"
-          (sort)="onSort($event)"
-          *ngIf="tableHeader.email"
-        >
-          {{ tableHeader.email }}
-        </th>
-        <th
-          scope="col"
-          sortable="jour"
-          (sort)="onSort($event)"
-          *ngIf="tableHeader.jour"
-        >
-          {{ tableHeader.jour }}
-        </th>
-        <th
-          scope="col"
-          sortable="designation"
-          (sort)="onSort($event)"
-          *ngIf="tableHeader.designation"
-        >
-          {{ tableHeader.designation }}
-        </th>
-        <th
-          scope="col"
-          sortable="prix"
-          (sort)="onSort($event)"
-          *ngIf="tableHeader.prix"
-        >
-          {{ tableHeader.prix }}
+        <th *ngFor="let column of tableHeader" (click)="sortTable(column)">
+          {{ capitalize(column) }}
+          <span *ngIf="isDescSorting(column)">▼</span>
+          <span *ngIf="isAscSorting(column)">▲</span>
         </th>
       </tr>
     </thead>
@@ -63,8 +19,18 @@
           {{ row.designation }}
         </td>
         <td class="table__body__prix" *ngIf="row.prix">{{ row.prix }}</td>
-        <td class="table__body__modification" *ngIf="row.modification"></td>
-        <td class="table__body__delete" *ngIf="row.delete"></td>
+        <td
+          class="table__body__modification"
+          *ngIf="row.modification"
+          (click)="onClickModification($event)"
+          data-id="{{ row.id }}"
+        ></td>
+        <td
+          class="table__body__delete"
+          *ngIf="row.delete"
+          (click)="onClickDelete($event)"
+          data-id="{{ row.id }}"
+        ></td>
         <td class="table__body__compte" *ngIf="row.compte"></td>
       </tr>
     </tbody>

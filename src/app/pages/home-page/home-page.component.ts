@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MealService } from '../../Services/meal.service';
+import { MealService } from '../../services/meal/meal.service';
 import Meal from '../../models/meal.model';
 @Component({
   selector: 'app-home-page',
