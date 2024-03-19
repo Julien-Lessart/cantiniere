@@ -50,12 +50,14 @@ onLogin(user:SignInModel){
         const decodedToken = helper.decodeToken(res.headers.get('Authorization') || "");
         configSession.push({idToken: res.headers.get('Authorization'), user:decodedToken});
         this._auth.setSession(configSession);
+        if(res.status == 200) {
+          this.router.navigate(['/']);
+        }
       /* this._auth.setUser(this.loginObj.email); */
       /* this.router.navigate(['/home']); */
       },
       err => console.log(err)
       );
-      this.router.navigate(['/']);
     }
   }
 }
