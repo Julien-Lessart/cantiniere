@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment, { Moment } from "moment";
 import { SignInModel, SignUpModel } from '../../components/login/login.component';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  isAuthenticated$:Observable<boolean> = this.isAuthenticatedSubject.asObservable();
   constructor(private _http:HttpClient)  {}
   private _config = new configBack; 
   // Query pour la connexion utilisateur

@@ -7,13 +7,12 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NavbarComponent } from './Components/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ComptePageComponent } from './pages/compte-page/compte-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
-import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
 import { ConstraintsComponent } from './components/constraints/constraints.component';
@@ -21,7 +20,6 @@ import { LogoutComponent } from './components/logout/logout.component';
 
 import { FormsComponent } from './components/form/forms.component';
 import { FilterComponentComponent } from './Components/filter-component/filter-component.component';
-import { NavbarLinkComponent } from './Components/navbar-link/navbar-link.component';
 import { CagnotteComponent } from './components/cagnotte/cagnotte.component';
 import { TableComponent } from './components/table/table.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -42,7 +40,7 @@ export function tokenGetter() {
     CagnotteComponent,
     NavbarLinkComponent,
     ConstraintsComponent,
-      LogoutComponent,
+    LogoutComponent,
     TableComponent,
     ModalComponent
   ],
