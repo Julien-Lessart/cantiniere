@@ -52,6 +52,8 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(authResult[1].user.exp));
     localStorage.setItem('roles', authResult[1].user.roles);
     localStorage.setItem('user', JSON.stringify(authResult[1].user.user));
+
+    this.isAuthenticatedSubject.next(true);
   }          
 
   /**
@@ -62,6 +64,8 @@ export class AuthService {
       localStorage.removeItem("expires_at");
       localStorage.removeItem("user");
       localStorage.removeItem("roles");
+
+      this.isAuthenticatedSubject.next(false);
   }
 
   /**
