@@ -12,6 +12,13 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ComptePageComponent } from './pages/compte-page/compte-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+
+import { HomePageComponent } from './pages/home-page/home-page.component';
+
+import { NavbarLinkComponent } from './components/navbar-link/navbar-link.component';
+import { ConstraintsComponent } from './components/constraints/constraints.component';
+import { LogoutComponent } from './components/logout/logout.component';
+
 import { FormsComponent } from './components/form/forms.component';
 import { FilterComponentComponent } from './Components/filter-component/filter-component.component';
 import { NavbarLinkComponent } from './Components/navbar-link/navbar-link.component';
@@ -34,6 +41,8 @@ export function tokenGetter() {
     ComptePageComponent,
     CagnotteComponent,
     NavbarLinkComponent,
+    ConstraintsComponent,
+      LogoutComponent,
     TableComponent,
     ModalComponent
   ],

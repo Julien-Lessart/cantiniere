@@ -8,7 +8,7 @@
         <ul class="links">
 
             @for (link of links; track link.link){
-                @if(link.display) {
+                @if(shouldDisplay(link.display)) {
                     <app-navbar-link [link]="link.link" [visual]="link.visual" [active]="this.href==link.link" />
                 }
             }

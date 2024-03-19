@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   @Input()
-  fieldsUser = [{id:'nom', label:'Nom', isMail:false, isPassword:false}, {id:'prenom', label:'Prenom', isMail:false, isPassword:false}, {id:'email', label:'E-mail', isMail:true, isPassword:false}, {id:'password', label:'Mot de passe', isMail:false, isPassword:true}];
+  fieldsUser = [{id:'nom', label:'Nom', control: new FormControl('', [Validators.required,Validators.min(2)]), type: "text"}, {id:'prenom', label:'Prenom', control: new FormControl('', [Validators.required,Validators.min(2)]), type: "text"}, {id:'email', label:'E-mail', control: new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]), type: "email"}, {id:'password', label:'Mot de passe', control: new FormControl('', [Validators.required,Validators.min(2)]), type: "password"}];
   registerUserData!:FormGroup;
   configFormRegister:any = { 
     email : new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
