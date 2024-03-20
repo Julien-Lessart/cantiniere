@@ -11,7 +11,7 @@ export class MealService {
 
   getTodayMeals(week: number, day: number): Observable<Meal[]> {
     return this.HttpClient.get<Meal[]>(
-      `${this.apiUrl}/menu/findallavailableforweekandday/${week}/${day}`
+      `${this.apiUrl}/meal/findallavailableforweekandday/${week}/${day}`
     );
   }
 }

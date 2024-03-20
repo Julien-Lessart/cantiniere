@@ -22,17 +22,19 @@ export class HomePageComponent implements OnInit {
 
   private thisWeekNumber = this.calculateWeek();
   private thisdayNumber = this.currentDate.getDay();
-  ngOnInit(): void {
+
+  onChangeDay(day:number){
     this.MealService.getTodayMeals(
       this.thisWeekNumber,
-      this.thisdayNumber
+      day,
     ).subscribe((datasMeal) => {
       this.datasMeal = datasMeal;
     });
     console.log({
       data: this.datasMeal,
       week: this.thisWeekNumber,
-      day: this.thisdayNumber,
+      day: day,
     });
   }
+  ngOnInit(): void {this.onChangeDay(this.thisdayNumber) }
 }

@@ -1,9 +1,4 @@
 <app-filter-component
-  [filteredOptions]="[
-    { data: 1, name: 'lundi' },
-    { data: 2, name: 'mardi' },
-    { data: 3, name: 'mercredi' },
-    { data: 4, name: 'jeudi' },
-    { data: 5, name: 'vendredi' }
-  ]"
+  [filteredOptions]="datasMeal"
+  (newItemEvent)="onChangeDay($event)"
 ></app-filter-component>

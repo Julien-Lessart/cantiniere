@@ -1,9 +1,59 @@
+.titleHomepage{
+  font-size: 30px;
+  margin: 150px 0 51px 0;
+  font-family: "Syne", sans-serif;
+  font-weight: bold;
+  color: #1d6154;
+  text-align: center;
+}
+.cardMeal{
+  height: 245px;
+  margin: 0 10px;
+  width: 294px;
+ display: flex;
+ flex-direction: column;
+  font-weight: bold;
+  cursor: pointer;
+  justify-content: space-around;
+  padding: 9px 39px;
+  border: 1px solid #1d6154;
+  border-radius: 20px;
+  font-family: "Syne", sans-serif;
+  font-size: 13px;
+  text-align: center;
+  background: white;
+}
+#allMeals{
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  gap: 23px;
+  margin-top: 40px;
+}
+.cardMeal h3 {
+  
+  
+  font-size: 24px;
+  font-family: "Syne", sans-serif;
+  font-weight: bold;
+  color: #1d6154;
+}
+.price{
+  display: flex;
+  justify-content: space-between;
+}
 #Filter {
   display: flex;
   max-width: 90%;
+  margin:auto;
   padding: 0 60px;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 10px;
+  
 }
 
 .filterButton {
@@ -19,6 +69,7 @@
   font-family: "Syne", sans-serif;
   font-size: 16px;
   text-align: center;
+  background: white;
 }
 .selected {
   color: white;

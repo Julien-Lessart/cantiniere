@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import Meal from '../../models/meal.model';
 
 @Component({
   selector: 'app-filter-component',
@@ -6,20 +7,21 @@ import { Component, Input } from '@angular/core';
   styleUrl: './filter-component.component.css',
 })
 export class FilterComponentComponent {
-  @Input() filteredOptions: { data: any; name: string }[] = [
-    { data: new Date().getDay(), name: '' },
-  ];
+  @Input() filteredOptions:Meal[] = []
+   weekday:Array<string> = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"];
 
-  filteredOption?: number = new Date().getDay();
+   @Output()
+   newItemEvent = new EventEmitter<any>();
+  filteredOption?: number = new Date().getDay() ;
   /*
   ngOnInit(): void {
     this.filteredOption = this.filteredOptions[0].data;
   }
   */
-
+indexSelected = new Date().getDay()- 1;
   setValue(filter: number) {
-    console.log(new Date().getDay());
-    this.filteredOption = filter;
+   this.indexSelected = filter
+    this.newItemEvent.emit(this.filteredOption = filter+1);
     console.log(this.filteredOption);
   }
 }

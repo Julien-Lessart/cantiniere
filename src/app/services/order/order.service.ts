@@ -87,7 +87,7 @@ export interface quantity{
     meal: {
       availableForWeeksAndDays: {
         values: [valuesDate];
-      }       
+      }      
       category:string; 
       id:number; 
       imageId:number; 

@@ -1,24 +1,34 @@
+<h1 [className]="'titleHomepage'">Les plats de la semaine</h1>
 <div
   ngDefaultControl
   [(ngModel)]="filteredOption"
   name="locationFilter"
   id="Filter"
 >
-  <div *ngFor="let option of filteredOptions; index as i; first as isFirst">
-    <div
+
+  <div *ngFor="let option of weekday; index as i; first as isFirst">
+    <button type="button"
       [ngClass]="
-        option.data === filteredOption
+        i === indexSelected
           ? 'selected filterButton'
           : 'filterButton'
       "
-      (click)="setValue(option.data)"
+      (click)="setValue(i)"
     >
-      {{ option.name | titlecase }}
-    </div>
+      {{ option | titlecase }}
+    </button>
   </div>
 </div>
-<div [ngClass]="filteredOption === 1 ? 'display' : 'hidden'">Lundi</div>
-<div [ngClass]="filteredOption === 2 ? 'display' : 'hidden'">Mardi</div>
-<div [ngClass]="filteredOption === 3 ? 'display' : 'hidden'">Mercredi</div>
-<div [ngClass]="filteredOption === 4 ? 'display' : 'hidden'">Jeudi</div>
-<div [ngClass]="filteredOption === 5 ? 'display' : 'hidden'">Vendredi</div>
+
+<div id="allMeals">
+@for (item of filteredOptions; track item.id) {
+  <div [className]="'cardMeal'">
+  <h3>{{ item.label }}</h3>
+  <div [className]="'price'">
+Seul<p>{{item.priceDF}} €</p></div>
+<button type="button" [className]="'selected filterButton'">Commander</button></div>
+  } @empty {
+  <li>Pas de plat aujourd'hui</li>
+  }
+</div>
+

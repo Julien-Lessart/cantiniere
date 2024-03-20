@@ -35,12 +35,14 @@ export class ComptePageComponent implements OnInit{
       const weekday:Array<string> = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
       for(let i = 0; i < res.length; i++){
         if(res[i].status === 'CREATED'){
-          if(thisWeekNumber === res[i].quantity[0].meal.availableForWeeksAndDays.values[0].week){
+          console.log(res[i].quantity[0]);
+          if(Object.keys(res[i].quantity[0].meal.availableForWeeksAndDays).length == 0 || thisWeekNumber === res[i].quantity[0].meal.availableForWeeksAndDays.values[0].week){
             const temp:table = { 
               nom:'',
               prenom:'',
               email:'',
-              jour: weekday[res[i].quantity[0].meal.availableForWeeksAndDays.values[0].day],
+              // jour: weekday[res[i].quantity[0].meal.availableForWeeksAndDays.values[0].day],
+              jour: weekday[0],
               designation: res[i].quantity[0].meal.label,
               prix: res[i].quantity[0].meal.priceDF.toString(),
               modification:true,
